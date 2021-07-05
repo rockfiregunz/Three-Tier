@@ -44,13 +44,6 @@ namespace Three_Tier.Repository
             return data;
         }
 
-
-        public Member FindOne(Expression<Func<Member, bool>> expression)
-        {
-            var data    =   FindAll(expression);
-            return (data.Count()==1)?data.Single():null;
-        }
-
         public void Dispose()
         {
             this.Dispose(true);

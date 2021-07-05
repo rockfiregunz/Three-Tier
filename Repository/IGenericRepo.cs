@@ -9,7 +9,6 @@ namespace Three_Tier.Repository
         void Create(TEntity Entry);
         void Update(TEntity TEntry);
         void Delete(TEntity TEntry);
-        TEntity FindOne(Expression<Func<TEntity, bool>> expression);
         IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> expression);
         bool SaveChange();
     }
