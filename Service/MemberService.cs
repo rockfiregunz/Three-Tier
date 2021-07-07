@@ -9,7 +9,7 @@ namespace Three_Tier.Service
 {
     class MemberService : IGenericService<Member>
     {
-        private MemberRepo _repo;
+        private readonly MemberRepo _repo;
         public  MemberService()
         {
             _repo   =   new MemberRepo();

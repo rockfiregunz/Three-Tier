@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using Three_Tier.Model;
+using Three_Tier.ViewModel;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
@@ -19,6 +20,7 @@ namespace Three_Tier
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<SqlContext>(null);
+            modelBuilder.Entity<ViewMember>();
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
         }
 
@@ -28,5 +30,6 @@ namespace Three_Tier
             return new SqlConnection(connstring);
         }
         public DbSet<Member> Member { set;get;}
+        public DbSet<ViewMember> ViewMember { set; get; }
     }
 }

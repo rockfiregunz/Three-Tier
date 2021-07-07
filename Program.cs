@@ -8,7 +8,6 @@ namespace Three_Tier
 {
     class Program
     {
-      
         static void Main(string[] args)
         {
             try

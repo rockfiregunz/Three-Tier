@@ -23,5 +23,6 @@ namespace Three_Tier.Model
         public string Addr { set; get; }
 
         public Member Member { set;get;}
+
     }
 }
