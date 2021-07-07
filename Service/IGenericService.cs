@@ -11,7 +11,6 @@ namespace Three_Tier.Service
         bool Update(TEntity TEntry);
         bool Delete(TEntity TEntry);
         bool SaveChange();
-        TEntity FindOne(Expression<Func<TEntity, bool>> expression);
         IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> expression);
         
     }

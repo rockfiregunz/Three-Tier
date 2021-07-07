@@ -10,20 +10,7 @@ namespace Three_Tier
     {
         static void Main(string[] args)
         {
-            try
-            {
-                var _repo = new MemberRepo();
-                var data    =   _repo.FindAll(x=>x.Id>0);
-                Console.WriteLine("A");
-                Console.WriteLine(data.Count());
-                Console.WriteLine("B");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             
-
         }
     }
 }

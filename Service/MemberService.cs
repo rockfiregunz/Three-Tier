@@ -15,32 +15,74 @@ namespace Three_Tier.Service
             _repo   =   new MemberRepo();
         }
         public bool Create(Member model)
-        {
-            _repo.Create(model);
-            throw new NotImplementedException();
+        {            
+            try
+            {
+                var member = _repo.FindAll(x => x.Name.ToLower().Equals(model.Name.ToLower())).FirstOrDefault();
+                if (member == null)
+                {
+                    _repo.Create(model);
+                    return _repo.SaveChange();
+                }
+                else
+                    Console.WriteLine("已有相同名稱");
+
+                return false;
+            }
+            catch(Exception ex)
+            {
+                    throw new Exception(ex.Message);
+            } 
         }
 
         public bool Update(Member model)
         {
-            _repo.Update(model);
-            throw new NotImplementedException();
+            try
+            {
+                var chkdata = _repo.FindAll(x => !x.Id.Equals(model.Id) && x.Name.ToLower().Equals(model.Name.ToLower())).FirstOrDefault();
+                if (chkdata == null)
+                {
+                    var member = _repo.FindAll(x => x.Id.Equals(model.Id)).Single();
+                    member.Name = model.Name;
+                    _repo.Update(member);
+                    return _repo.SaveChange();
+                }
+                else
+                    Console.WriteLine("已有相同名稱");
+                
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool Delete(Member model)
         {
-            _repo.Delete(model);
-            throw new NotImplementedException();
+            try
+            {
+                var member = _repo.FindAll(x => x.Id.Equals(model.Id)).Single();                 
+                _repo.Delete(member);
+                return _repo.SaveChange();                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IQueryable<Member> FindAll(Expression<Func<Member, bool>> expression)
         {
-            return _repo.FindAll(expression);
-        }
-
-        public Member FindOne(Expression<Func<Member, bool>> expression)
-        {
-            return _repo.FindAll(expression).Single();
-
+            try
+            {
+                return _repo.FindAll(expression);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public bool SaveChange()

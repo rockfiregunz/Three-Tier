@@ -82,6 +82,7 @@
     <Compile Include="Service\IGenericService.cs" />
     <Compile Include="Service\MemberService.cs" />
     <Compile Include="SqlContext.cs" />
+    <Compile Include="TestMothed.cs" />
     <Compile Include="ViewModel\ViewMember.cs" />
   </ItemGroup>
   <ItemGroup>
