@@ -77,8 +77,11 @@
     <Compile Include="Model\Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepo.cs" />
     <Compile Include="Repository\IGenericRepo.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Repository\MemberRepo.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Service\IGenericService.cs" />
     <Compile Include="Service\MemberService.cs" />
     <Compile Include="SqlContext.cs" />

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Three_Tier.Repository
 {
-    interface IGenericRepo<TEntity> : IDisposable where TEntity : class
+    public interface IGenericRepo<TEntity> : IDisposable where TEntity : class
     {
         void Create(TEntity Entry);
         void Update(TEntity TEntry);

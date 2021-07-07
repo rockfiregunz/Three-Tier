@@ -12,7 +12,7 @@ namespace Three_Tier.Repository
 {
     class MemberRepo : IGenericRepo<Member>
     {
-         private DbContext _context;
+         private  readonly DbContext _context;
          public MemberRepo()
          {
              this._context    = new SqlContext();
