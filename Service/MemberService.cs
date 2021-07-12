@@ -10,17 +10,27 @@ namespace Three_Tier.Service
     class MemberService : IGenericService<Member>
     {
         private readonly MemberRepo _repo;
+        private readonly IUnitOfWork _uow;
         public  MemberService()
         {
             _repo   =   new MemberRepo();
+            _uow    = new UnitOfWork();
         }
+
+        public bool CreateUOW(Member model)
+        {
+            _uow.Repository<Member>().Create(model);
+
+            return _uow.Save();
+        }
+
         public bool Create(Member model)
         {            
             try
             {
                 var member = _repo.FindAll(x => x.Name.ToLower().Equals(model.Name.ToLower())).FirstOrDefault();
                 if (member == null)
-                {
+                {  
                     _repo.Create(model);
                     return _repo.SaveChange();
                 }

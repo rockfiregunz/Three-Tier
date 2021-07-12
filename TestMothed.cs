@@ -22,6 +22,22 @@ namespace Three_Tier
             this._memberService = new MemberService();
         }
 
+        /// <summary>
+        ///  第一個錯誤地方，使用UOW 卻找不到
+        /// 參考文章
+        /// https://ithelp.ithome.com.tw/articles/10157700
+        /// http://enjoy01coding.blogspot.com/2017/05/aspnet-mvc-entity-framework-repository.html
+        /// </summary>
+        [Test]
+        public void CreateUOW()
+        {
+            var data = new Member() { Name = "John1221" };
+            if (_memberService.CreateUOW(data))
+            {
+                Console.WriteLine("更新成功");
+            }
+        }
+
         [Test]
         public void CreateMember()
         {

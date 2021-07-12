@@ -50,9 +50,9 @@ namespace Three_Tier.Repository
         /// <summary>
         /// 儲存所有異動。
         /// </summary>
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges()>0;
         }
 
         /// <summary>

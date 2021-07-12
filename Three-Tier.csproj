@@ -83,6 +83,7 @@
     <Compile Include="Repository\GenericRepo.cs" />
     <Compile Include="Repository\IGenericRepo.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\MemberInfoRepo.cs" />
     <Compile Include="Repository\MemberRepo.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Service\IGenericService.cs" />

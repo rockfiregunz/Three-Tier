@@ -8,7 +8,7 @@ namespace Three_Tier.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
-        void Save();
+        bool Save();
         IGenericRepo<T> Repository<T>() where T : class; 
     }
 }

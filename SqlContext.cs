@@ -30,6 +30,7 @@ namespace Three_Tier
             return new SqlConnection(connstring);
         }
         public DbSet<Member> Member { set;get;}
+        public DbSet<MemberInfo> MemberInfo { set; get; }
         public DbSet<ViewMember> ViewMember { set; get; }
     }
 }
