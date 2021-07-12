@@ -17,7 +17,7 @@ namespace Three_Tier
         ///  及 未來可以練習抽換 Repo 才先這樣做
         /// </summary>
         [SetUp]
-        public void init()
+        public void Init()
         {
             this._memberService = new MemberService();
         }
