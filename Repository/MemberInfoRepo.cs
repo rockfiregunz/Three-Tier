@@ -20,7 +20,7 @@ namespace Three_Tier.Repository
 
         public void Create(MemberInfo model)
         {
-            _context.Entry(model).State = EntityState.Added;
+            _context.Set<MemberInfo>().Add(model);
         }
 
         public void Update(MemberInfo model)

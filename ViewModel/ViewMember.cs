@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Three_Tier.ViewModel
 {
-    
-    class ViewMember
+
+    public class ViewMember
     {
         [Key]
         public int Id { set; get; }

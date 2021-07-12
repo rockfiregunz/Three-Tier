@@ -8,6 +8,7 @@ namespace Three_Tier.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
+        DbContext Context { get;}
         bool Save();
         IGenericRepo<T> Repository<T>() where T : class; 
     }

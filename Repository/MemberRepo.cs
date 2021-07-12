@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace Three_Tier.Repository
 {
-    class MemberRepo : IGenericRepo<Member>
+    public class MemberRepo : GenericRepo<Member>
     {
          private  readonly DbContext _context;
          public MemberRepo()
@@ -20,7 +20,7 @@ namespace Three_Tier.Repository
 
         public void Create(Member model)
         {
-            _context.Entry(model).State = EntityState.Added;
+            _context.Set<Member>().Add(model);
         }
 
         public void Update(Member model)
@@ -56,7 +56,5 @@ namespace Three_Tier.Repository
                 _context.Dispose();
             }
         }
-
-
     }
 }

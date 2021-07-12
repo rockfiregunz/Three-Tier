@@ -11,7 +11,7 @@ namespace Three_Tier.Service
     {
         private readonly MemberRepo _repo;
         private readonly MemberInfoRepo _repoInfo;
-        private readonly UnitOfWork _uow;
+        private readonly IUnitOfWork _uow;
         public  MemberService()
         {
             _repo          =    new MemberRepo();
@@ -19,28 +19,22 @@ namespace Three_Tier.Service
             _uow           =    new UnitOfWork();
         }
 
-
-        public bool CreateTwo(Member model,MemberInfo info)
-        {
-            using(var Trans = new SqlContext().Database.BeginTransaction())
-            {
-                _repo.Create(model);
-                _repo.SaveChange();
-                info .FK_Id=model.Id;
-                _repoInfo.Create(info);
-                _repoInfo.SaveChange();
-                Trans.Rollback();
-                return false;
-            }
-        }
-
-
         public bool CreateUOW(Member model)
         {
-            // 為何是參考  IGenericRepo，而不會跑到 GenericRepo
+            //  正常語法
+            /*  using (var context = _uow.Context)
+              {
+                  using (var transaction = context.Database.BeginTransaction())
+                  {
+                      context.Set<Member>().Add(model);
+                      context.SaveChanges();
+                      transaction.Commit();
+                  }
+              }*/
+            
             _uow.Repository<Member>().Create(model);
-
-            return _uow.Save();
+            
+            return false;
         }
 
         public bool Create(Member model)

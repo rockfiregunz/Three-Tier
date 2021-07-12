@@ -41,8 +41,6 @@ namespace Three_Tier.Repository
             return data;
         }
 
-        
-
         public void Dispose()
         {
             this.Dispose(true);

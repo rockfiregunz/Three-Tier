@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.Entity;
+using Three_Tier.Model;
 
 /// <summary>
 /// 參考文章
@@ -15,9 +16,14 @@ namespace Three_Tier.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
+        private  DbContext _context;
         private bool _disposed;
         private Hashtable _repositories;
+ 
+        public DbContext Context
+        {
+            get {   return this._context;   }
+        }
 
         public UnitOfWork()
         {

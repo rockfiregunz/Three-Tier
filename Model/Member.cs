@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Three_Tier.Model
 {
-    class Member
+    public class Member
     {
         [Key]
         public int Id { set;get;}
@@ -13,7 +13,7 @@ namespace Three_Tier.Model
         public char Del { set; get; }
     }
 
-    class MemberInfo
+    public class MemberInfo
     {
         [Key]
      //   [ForeignKey("Id")]
