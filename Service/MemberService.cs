@@ -10,15 +10,34 @@ namespace Three_Tier.Service
     class MemberService : IGenericService<Member>
     {
         private readonly MemberRepo _repo;
-        private readonly IUnitOfWork _uow;
+        private readonly MemberInfoRepo _repoInfo;
+        private readonly UnitOfWork _uow;
         public  MemberService()
         {
-            _repo   =   new MemberRepo();
-            _uow    = new UnitOfWork();
+            _repo          =    new MemberRepo();
+            _repoInfo   =    new MemberInfoRepo();
+            _uow           =    new UnitOfWork();
         }
+
+
+        public bool CreateTwo(Member model,MemberInfo info)
+        {
+            using(var Trans = new SqlContext().Database.BeginTransaction())
+            {
+                _repo.Create(model);
+                _repo.SaveChange();
+                info .FK_Id=model.Id;
+                _repoInfo.Create(info);
+                _repoInfo.SaveChange();
+                Trans.Rollback();
+                return false;
+            }
+        }
+
 
         public bool CreateUOW(Member model)
         {
+            // 為何是參考  IGenericRepo，而不會跑到 GenericRepo
             _uow.Repository<Member>().Create(model);
 
             return _uow.Save();

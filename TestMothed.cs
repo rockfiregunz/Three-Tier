@@ -31,8 +31,21 @@ namespace Three_Tier
         [Test]
         public void CreateUOW()
         {
-            var data = new Member() { Name = "John1221" };
+            var r = new Random().Next(0, 999);
+            var data = new Member() { Name = "uow" + r.ToString() };
             if (_memberService.CreateUOW(data))
+            {
+                Console.WriteLine("更新成功");
+            }
+        }
+
+        [Test]
+        public void CreateTwo()
+        {
+            var r = new Random().Next(0, 999);
+            var data1 = new Member() { Name = "Two" + r.ToString() };
+            var data2 = new MemberInfo() { Sex  = 'M' };
+            if (_memberService.CreateTwo(data1,data2))
             {
                 Console.WriteLine("更新成功");
             }

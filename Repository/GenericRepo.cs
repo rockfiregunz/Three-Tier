@@ -17,7 +17,7 @@ namespace Three_Tier.Repository
         }
         public void Create(TEntity model)
         {
-            _context.Entry(model).State = EntityState.Added;
+            _context.Set<TEntity>().Add(model);
         }
 
         public void Update(TEntity model)
