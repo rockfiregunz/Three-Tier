@@ -6,7 +6,7 @@ using System.Data.Entity;
 namespace Three_Tier.Repository
 {
     public interface IGenericRepo<TEntity> : IDisposable where TEntity : class
-    {        
+    {
         void Create(TEntity Entry);
         void Update(TEntity TEntry);
         void Delete(TEntity TEntry);

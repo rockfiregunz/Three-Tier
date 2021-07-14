@@ -10,13 +10,14 @@ using System.Linq.Expressions;
 
 namespace Three_Tier.Repository
 {
-    public class MemberRepo : GenericRepo<Member>
+    public class MemberRepo : IGenericRepo<Member>
     {
          private  readonly DbContext _context;
-         public MemberRepo()
+
+        public MemberRepo(DbContext context)
          {
-             this._context    = new SqlContext();
-         }
+            this._context    = context;
+        }
 
         public void Create(Member model)
         {

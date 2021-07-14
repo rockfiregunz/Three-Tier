@@ -9,31 +9,53 @@ namespace Three_Tier.Service
 {
     class MemberService : IGenericService<Member>
     {
-        private readonly MemberRepo _repo;
-        private readonly MemberInfoRepo _repoInfo;
+        private readonly IGenericRepo<Member>  _repo;
+        private readonly IGenericRepo<MemberInfo> _repoInfo;
         private readonly IUnitOfWork _uow;
         public  MemberService()
         {
-            _repo          =    new MemberRepo();
-            _repoInfo   =    new MemberInfoRepo();
-            _uow           =    new UnitOfWork();
+            _uow            =    new    UnitOfWork(new SqlContext());
+            _repo           =    new    GenericRepo<Member>(new SqlContext());
+            _repoInfo   =       new     GenericRepo<MemberInfo>(new SqlContext());
+
         }
 
-        public bool CreateUOW(Member model)
+        public bool CreateUOW(Member model,MemberInfo info)
         {
             //  正常語法
             /*  using (var context = _uow.Context)
-              {
-                  using (var transaction = context.Database.BeginTransaction())
-                  {
-                      context.Set<Member>().Add(model);
-                      context.SaveChanges();
-                      transaction.Commit();
-                  }
-              }*/
-            
-            _uow.Repository<Member>().Create(model);
-            
+                {
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        context.Set<Member>().Add(model);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                }*/
+            /*
+            using (var transaction = _uow.Context.Database.BeginTransaction())
+            {
+                var tmp1 = new MemberRepo(_uow.Context);
+                var tmp2 = new MemberInfoRepo (_uow.Context);
+               // tmp1.Create(model);
+               // tmp1.SaveChange();
+                tmp2.Create(info);
+                tmp2.SaveChange();
+                transaction.Commit();
+            }*/
+          var data = _repoInfo.FindAll(x=>x.MId>0);
+            foreach(var d in data.ToList())
+            {
+                Console.WriteLine("memberinfo : " +d.MId.ToString());
+            }
+
+            Console.WriteLine("insert : " + info.MId.ToString());
+
+ 
+          //  _repoInfo.Create(info);
+          //  _repoInfo.SaveChange();
+
+
             return false;
         }
 

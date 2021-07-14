@@ -20,7 +20,6 @@ namespace Three_Tier
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<SqlContext>(null);
-            modelBuilder.Entity<ViewMember>();
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
         }
 

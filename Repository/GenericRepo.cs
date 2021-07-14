@@ -11,10 +11,11 @@ namespace Three_Tier.Repository
     public class GenericRepo<TEntity> : IGenericRepo<TEntity> where TEntity : class
     {
         private readonly DbContext _context;
-        public GenericRepo()
+        public GenericRepo(DbContext context)
         {
-            _context = new SqlContext();
+            _context = context;
         }
+
         public void Create(TEntity model)
         {
             _context.Set<TEntity>().Add(model);

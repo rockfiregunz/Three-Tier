@@ -17,12 +17,9 @@ namespace Three_Tier.Model
     {
         [Key]
      //   [ForeignKey("Id")]
-        public int FK_Id { set; get; }
-        public char Sex { set; get; }
-        public Byte Zip { set; get; }
-        public string Addr { set; get; }
-
-    //    public Member Member { set;get;}
+        public int MId { set; get; }
+        public string Sex { set; get; }
+        //    public Member Member { set;get;}
 
     }
 }
