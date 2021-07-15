@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using Three_Tier.Model;
 using Three_Tier.ViewModel;
-using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
 
 namespace Three_Tier
@@ -30,6 +28,7 @@ namespace Three_Tier
             return new SqlConnection(connstring);
         }
         public DbSet<Member> Member { set;get;}
+        public DbSet<MemberInfo> MemberInfo { set; get; }
         public DbSet<ViewMember> ViewMember { set; get; }
     }
 }

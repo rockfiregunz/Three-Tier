@@ -10,7 +10,8 @@ namespace Three_Tier
 {
     class TestMothed
     {
-        public MemberService _memberService;
+        public IGenericService<Member>          _memberService;
+        public IGenericService<MemberInfo> _infoService;
 
         /// <summary>
         ///  正常情況不應該拿資料庫測試，因為要練習三層式架構
@@ -19,17 +20,32 @@ namespace Three_Tier
         [SetUp]
         public void Init()
         {
-            this._memberService = new MemberService();
+            _memberService   =    new MemberService();
+            _infoService            =    new MemberInfoService();
+        }
+
+
+        [Test]
+        public void CreateMemberInfo()
+        {
+            var data = new MemberInfo();
+            data.Id=1;
+            if (_infoService.Create(data))
+            {
+                Console.WriteLine("更新成功");
+            }
         }
 
         [Test]
         public void CreateMember()
         {
+            var r = new Random().Next(0, 999);
             var data = new Member();
-            data.Name = "John";
+            data.Name = "John"+r.ToString();
+            data.Del = "1";
             if (_memberService.Create(data))
             {
-                Console.WriteLine("更新成功");
+                Console.WriteLine("新增成功");
             }
         }
 
@@ -65,10 +81,13 @@ namespace Three_Tier
         public void GetAllMember()
         {
             var data = _memberService.FindAll(x => x.Id > 0);
-            foreach (var member in data.ToList())
-            {
-                Console.WriteLine(@"ID={0}，Name={1}", member.Id, member.Name);
+            if(data.ToList().Count()>0)
+            { 
+                foreach (var member in data.ToList())
+                    Console.WriteLine(@"ID={0}，Name={1}", member.Id, member.Name);
             }
+            else
+                Console.WriteLine("沒有資料");
         }
 
 

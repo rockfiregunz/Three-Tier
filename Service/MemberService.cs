@@ -7,13 +7,15 @@ using Three_Tier.Repository;
 
 namespace Three_Tier.Service
 {
-    class MemberService : IGenericService<Member>
+    public class MemberService : IGenericService<Member>
     {
-        private readonly MemberRepo _repo;
+        private readonly IGenericRepo<Member> _repo;
         public  MemberService()
         {
-            _repo   =   new MemberRepo();
+            var context  =  new SqlContext();
+            _repo   =   new MemberRepo(context);
         }
+
         public bool Create(Member model)
         {            
             try
