@@ -22,8 +22,11 @@ namespace Three_Tier.Service
         {            
             try
             {
-                _repo.Create(model);
-                _repo.SaveChange();
+                _uow.Repository<MemberInfo>().Create(model);
+                _uow.Save();
+
+                // _repo.Create(model);
+                // _repo.SaveChange();
             }
             catch(Exception ex)
             {
