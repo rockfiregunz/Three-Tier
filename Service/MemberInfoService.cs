@@ -22,11 +22,16 @@ namespace Three_Tier.Service
         {            
             try
             {
-                _uow.Repository<MemberInfo>().Create(model);
-                _uow.Save();
+                var info = _repo.FindAll(x => x.Id.Equals(model.Id)).FirstOrDefault();
 
-                // _repo.Create(model);
-                // _repo.SaveChange();
+                if (info == null)
+                {
+                    _repo.Create(model);
+                    return _repo.SaveChange();
+                }
+                else
+                    Console.WriteLine("已有相同資料");
+    
             }
             catch(Exception ex)
             {

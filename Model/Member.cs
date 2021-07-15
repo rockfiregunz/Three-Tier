@@ -16,10 +16,13 @@ namespace Three_Tier.Model
     public class MemberInfo
     {
         [Key]
-     //   [ForeignKey("Id")]
-        public int MId { set; get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { set; get; }
         public string Sex { set; get; }
-        //    public Member Member { set;get;}
+        public int? Zip { set; get; }
+        public string County { set; get; }
+        public string Area { set; get; }
+        public string Addr { set; get; }
 
     }
 }

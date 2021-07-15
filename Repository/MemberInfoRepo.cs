@@ -15,7 +15,7 @@ namespace Three_Tier.Repository
         private  readonly DbContext _context;
         public MemberInfoRepo(DbContext context)
         {
-             this._context    =  context;
+             _context    =  context;
         }
 
         public void Create(MemberInfo model)

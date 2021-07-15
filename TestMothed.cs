@@ -25,7 +25,6 @@ namespace Three_Tier
         }
 
         /// <summary>
-        ///  第一個錯誤地方，使用UOW 卻找不到
         /// 參考文章
         /// https://ithelp.ithome.com.tw/articles/10157700
         /// http://enjoy01coding.blogspot.com/2017/05/aspnet-mvc-entity-framework-repository.html
@@ -35,7 +34,7 @@ namespace Three_Tier
         {
             var r = new Random().Next(0, 999);
             var data1 = new Member() { Name = "uow" + r.ToString() };
-            var data2 = new MemberInfo() { MId = 3 ,Sex = "M"};
+            var data2 = new MemberInfo() { Sex = "F"};
             if (_memberService.CreateUOW(data1,data2))
             {
                 Console.WriteLine("更新成功");
@@ -45,7 +44,7 @@ namespace Three_Tier
         [Test]
         public void CreateInfo()
         {
-            var data = new MemberInfo() { MId = 55 , Sex="M"};
+            var data = new MemberInfo() { Id =2 , Sex="M"};
             _InfoService.Create(data);
         }
 

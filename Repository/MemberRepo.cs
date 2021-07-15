@@ -16,7 +16,7 @@ namespace Three_Tier.Repository
 
         public MemberRepo(DbContext context)
          {
-            this._context    = context;
+            _context    = context;
         }
 
         public void Create(Member model)

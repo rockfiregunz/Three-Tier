@@ -32,31 +32,29 @@ namespace Three_Tier.Service
                         transaction.Commit();
                     }
                 }*/
-            /*
+            
             using (var transaction = _uow.Context.Database.BeginTransaction())
             {
                 var tmp1 = new MemberRepo(_uow.Context);
                 var tmp2 = new MemberInfoRepo (_uow.Context);
-               // tmp1.Create(model);
-               // tmp1.SaveChange();
-                tmp2.Create(info);
-                tmp2.SaveChange();
-                transaction.Commit();
-            }*/
-          var data = _repoInfo.FindAll(x=>x.MId>0);
-            foreach(var d in data.ToList())
-            {
-                Console.WriteLine("memberinfo : " +d.MId.ToString());
+                try
+                {
+                    tmp1.Create(model);
+                    tmp1.SaveChange();
+                    info.Id = model.Id;
+                    tmp2.Create(info);
+                    tmp2.SaveChange();
+                    transaction.Commit();
+                    return true;
+                }
+                catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception (ex.Message);
+                }
+
             }
-
-            Console.WriteLine("insert : " + info.MId.ToString());
-
- 
-          //  _repoInfo.Create(info);
-          //  _repoInfo.SaveChange();
-
-
-            return false;
+         
         }
 
         public bool Create(Member model)
