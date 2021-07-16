@@ -19,9 +19,10 @@ namespace Three_Tier.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { set; get; }
         public string Sex { set; get; }
-        public int Zip { set; get; }
+        public int? Zip { set; get; }
         public string County { set; get; }
         public string Area { set; get; }
         public string Addr { set; get; }
+
     }
 }

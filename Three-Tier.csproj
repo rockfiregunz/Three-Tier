@@ -80,11 +80,14 @@
     <Compile Include="Model\Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepo.cs" />
     <Compile Include="Repository\IGenericRepo.cs" />
-    <Compile Include="Repository\MemberInfoRepo.cs" />
-    <Compile Include="Repository\MemberRepo.cs" />
-    <Compile Include="Service\IGenericService.cs" />
     <Compile Include="Service\MemberInfoService.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <None Include="Repository\MemberInfoRepo.cs.bak" />
+    <None Include="Repository\MemberRepo.cs.bak" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Service\IGenericService.cs" />
     <Compile Include="Service\MemberService.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="TestMothed.cs" />
@@ -119,6 +122,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -20,29 +20,39 @@ namespace Three_Tier
         [SetUp]
         public void Init()
         {
-            _memberService   =    new MemberService();
-            _infoService            =    new MemberInfoService();
+            _memberService = new MemberService();
+            _InfoService = new MemberInfoService();
         }
 
-
+        /// <summary>
+        /// 參考文章
+        /// https://ithelp.ithome.com.tw/articles/10157700
+        /// http://enjoy01coding.blogspot.com/2017/05/aspnet-mvc-entity-framework-repository.html
+        /// </summary>
         [Test]
-        public void CreateMemberInfo()
+        public void CreateUOW()
         {
-            var data = new MemberInfo();
-            data.Id=1;
-            if (_infoService.Create(data))
+            var r = new Random().Next(0, 999);
+            var data1 = new Member() { Name = "uow" + r.ToString() };
+            var data2 = new MemberInfo() { Sex = "F"};
+            if (_memberService.CreateUOW(data1,data2))
             {
                 Console.WriteLine("更新成功");
             }
         }
 
         [Test]
+        public void CreateInfo()
+        {
+            var data = new MemberInfo() { Id =2 , Sex="M"};
+            _InfoService.Create(data);
+        }
+
+        [Test]
         public void CreateMember()
         {
             var r = new Random().Next(0, 999);
-            var data = new Member();
-            data.Name = "John"+r.ToString();
-            data.Del = "1";
+            var data = new Member() { Name = "John" + r.ToString() };
             if (_memberService.Create(data))
             {
                 Console.WriteLine("新增成功");

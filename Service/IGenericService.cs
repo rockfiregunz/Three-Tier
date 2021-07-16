@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Three_Tier.Service
 {
-    interface IGenericService<TEntity> where TEntity : class
+    public interface IGenericService<TEntity> 
     {
         bool Create(TEntity Entry);
         bool Update(TEntity TEntry);

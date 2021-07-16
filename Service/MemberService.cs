@@ -9,11 +9,36 @@ namespace Three_Tier.Service
 {
     public class MemberService : IGenericService<Member>
     {
-        private readonly IGenericRepo<Member> _repo;
+        private readonly IGenericRepo<Member>  _repo;
+        private readonly IUnitOfWork _uow;
         public  MemberService()
         {
-            var context  =  new SqlContext();
-            _repo   =   new MemberRepo(context);
+            _uow            =    new    UnitOfWork(new SqlContext());
+            _repo           =    new    GenericRepo<Member>(new SqlContext());
+        }
+
+        public bool CreateUOW(Member model,MemberInfo info)
+        {
+            using (var transaction = _uow.Context.Database.BeginTransaction())
+            {
+                var tmp1 = new GenericRepo<Member>(_uow.Context);
+                var tmp2 = new GenericRepo<MemberInfo>(_uow.Context);
+                try
+                {
+                    tmp1.Create(model);
+                    tmp1.SaveChange();
+                    info.Id = model.Id;
+                    tmp2.Create(info);
+                    tmp2.SaveChange();
+                    transaction.Commit();
+                    return true;
+                }
+                catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception (ex.Message);
+                }
+            }
         }
 
         public bool Create(Member model)
@@ -22,7 +47,7 @@ namespace Three_Tier.Service
             {
                 var member = _repo.FindAll(x => x.Name.ToLower().Equals(model.Name.ToLower())).FirstOrDefault();
                 if (member == null)
-                {
+                {  
                     _repo.Create(model);
                     return _repo.SaveChange();
                 }
