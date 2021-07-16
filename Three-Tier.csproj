@@ -84,8 +84,8 @@
     <Compile Include="Repository\IGenericRepo.cs" />
     <Compile Include="Service\MemberInfoService.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
-    <Compile Include="Repository\MemberInfoRepo.cs" />
-    <Compile Include="Repository\MemberRepo.cs" />
+    <None Include="Repository\MemberInfoRepo.cs.bak" />
+    <None Include="Repository\MemberRepo.cs.bak" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Service\IGenericService.cs" />
     <Compile Include="Service\MemberService.cs" />

@@ -20,8 +20,8 @@ namespace Three_Tier
         [SetUp]
         public void Init()
         {
-            this._memberService = new MemberService();
-            this._InfoService = new MemberInfoService();
+            _memberService = new MemberService();
+            _InfoService = new MemberInfoService();
         }
 
         /// <summary>

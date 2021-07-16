@@ -10,33 +10,19 @@ namespace Three_Tier.Service
     class MemberService : IGenericService<Member>
     {
         private readonly IGenericRepo<Member>  _repo;
-        private readonly IGenericRepo<MemberInfo> _repoInfo;
         private readonly IUnitOfWork _uow;
         public  MemberService()
         {
             _uow            =    new    UnitOfWork(new SqlContext());
             _repo           =    new    GenericRepo<Member>(new SqlContext());
-            _repoInfo   =       new     GenericRepo<MemberInfo>(new SqlContext());
-
         }
 
         public bool CreateUOW(Member model,MemberInfo info)
         {
-            //  正常語法
-            /*  using (var context = _uow.Context)
-                {
-                    using (var transaction = context.Database.BeginTransaction())
-                    {
-                        context.Set<Member>().Add(model);
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                }*/
-            
             using (var transaction = _uow.Context.Database.BeginTransaction())
             {
-                var tmp1 = new MemberRepo(_uow.Context);
-                var tmp2 = new MemberInfoRepo (_uow.Context);
+                var tmp1 = new GenericRepo<Member>(_uow.Context);
+                var tmp2 = new GenericRepo<MemberInfo>(_uow.Context);
                 try
                 {
                     tmp1.Create(model);
@@ -52,9 +38,7 @@ namespace Three_Tier.Service
                     transaction.Rollback();
                     throw new Exception (ex.Message);
                 }
-
             }
-         
         }
 
         public bool Create(Member model)
