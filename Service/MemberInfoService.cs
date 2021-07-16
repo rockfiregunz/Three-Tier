@@ -28,7 +28,6 @@ namespace Three_Tier.Service
                 {
                     _repo.Create(model);
                     return _repo.SaveChange();
-               // return false;
                 }
                 else
                     Console.WriteLine("已有相同資料");

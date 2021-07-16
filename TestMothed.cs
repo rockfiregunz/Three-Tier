@@ -10,8 +10,8 @@ namespace Three_Tier
 {
     class TestMothed
     {
-        public IGenericService<Member>          _memberService;
-        public IGenericService<MemberInfo> _infoService;
+        public MemberService _memberService;
+        public MemberInfoService _infoService;
 
         /// <summary>
         ///  正常情況不應該拿資料庫測試，因為要練習三層式架構
@@ -21,7 +21,7 @@ namespace Three_Tier
         public void Init()
         {
             _memberService = new MemberService();
-            _InfoService = new MemberInfoService();
+            _infoService    =  new MemberInfoService();
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace Three_Tier
         public void CreateUOW()
         {
             var r = new Random().Next(0, 999);
-            var data1 = new Member() { Name = "uow" + r.ToString() };
-            var data2 = new MemberInfo() { Sex = "F"};
-            if (_memberService.CreateUOW(data1,data2))
+            var data1 = new Member() { Name = "uow" + r.ToString() ,Del="1"};
+            var data2 = new MemberInfo() { Sex = "F"};            
+           if (_memberService.CreateUOW(data1,data2))
             {
                 Console.WriteLine("更新成功");
             }
@@ -45,14 +45,14 @@ namespace Three_Tier
         public void CreateInfo()
         {
             var data = new MemberInfo() { Id =2 , Sex="M"};
-            _InfoService.Create(data);
+            _infoService.Create(data);
         }
 
         [Test]
         public void CreateMember()
         {
             var r = new Random().Next(0, 999);
-            var data = new Member() { Name = "John" + r.ToString() };
+            var data = new Member() { Name = "John" + r.ToString(),Del="1" };
             if (_memberService.Create(data))
             {
                 Console.WriteLine("新增成功");
