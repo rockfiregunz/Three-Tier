@@ -17,6 +17,23 @@ namespace Three_Tier.Service
             _repo           =    new    GenericRepo<Member>(new SqlContext());
         }
 
+        public bool CreateUOWOneRepo(Member model, MemberInfo info)
+        {
+            model.info =   info;
+            var tmp1 = new GenericRepo<Member>(_uow.Context);
+            try
+            {
+                tmp1.Create(model);
+                tmp1.SaveChange();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public bool CreateUOW(Member model,MemberInfo info)
         {
             using (var transaction = _uow.Context.Database.BeginTransaction())

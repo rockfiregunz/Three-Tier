@@ -24,6 +24,20 @@ namespace Three_Tier
             _infoService    =  new MemberInfoService();
         }
 
+
+        [Test]
+        public void CreateUOWOneRepo()
+        {
+            var r = new Random().Next(0, 999);
+            var data1 = new Member() { Name = "OneRepo" + r.ToString(), Del = "1" };
+            var data2 = new MemberInfo() { Sex = "F" };
+            if (_memberService.CreateUOWOneRepo(data1, data2))
+            {
+                Console.WriteLine("更新成功");
+            }
+        }
+
+
         /// <summary>
         /// 參考文章
         /// https://ithelp.ithome.com.tw/articles/10157700
@@ -44,7 +58,7 @@ namespace Three_Tier
         [Test]
         public void CreateInfo()
         {
-            var data = new MemberInfo() { Id =2 , Sex="M"};
+            var data = new MemberInfo() { Id =41 , Sex="M"};
             _infoService.Create(data);
         }
 
